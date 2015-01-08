@@ -9,7 +9,7 @@ namespace MVC_TDD_Test.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MVC_TDD_Test.Models.ApplicationDbContext context)
