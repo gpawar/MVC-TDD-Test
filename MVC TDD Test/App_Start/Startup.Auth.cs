@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using MVC_TDD_Test.Models;
+using MVC_TDD_Test.Database;
 
 namespace MVC_TDD_Test
 {

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MVC_TDD_Test.Models;
+using MVC_TDD_Test.Database;
 
 namespace MVC_TDD_Test
 {

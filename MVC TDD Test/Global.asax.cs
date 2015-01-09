@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LightInject;
+using MVC_TDD_Test.Database;
+using MVC_TDD_Test.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +23,23 @@ namespace MVC_TDD_Test
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var container = new ServiceContainer();
+            container.RegisterControllers();        
+
+            //container.Register<IAccountService, AccountService>(new PerScopeLifetime());
+            container.Register<ICategoryRepository, CategoryRepository>(new PerScopeLifetime());
+            //container.Register<IPasswordRepository, PasswordRepository>(new PerScopeLifetime());
+            //container.Register<IUserPasswordRepository, UserPasswordRepository>(new PerScopeLifetime());
+
+            //container.Register<IViewModelValidatorService, ViewModelValidatorService>(new PerScopeLifetime());
+            //container.Register<IPermissionService, PermissionService>(new PerScopeLifetime());
+            //container.Register<IViewModelService, ViewModelService>(new PerScopeLifetime());
+
+            container.Register<ApplicationDbContext, ApplicationDbContext>(new PerScopeLifetime());
+            container.Register<ApplicationUserManager, ApplicationUserManager>(new PerScopeLifetime());
+
+            container.EnableMvc();
         }
     }
 }
