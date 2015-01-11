@@ -1,6 +1,8 @@
 namespace MVC_TDD_Test.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using MVC_TDD_Test.Database;
+    using MVC_TDD_Test.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,18 +17,19 @@ namespace MVC_TDD_Test.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            //Add in the roles required for the Secure Password Repository
+            context.Roles.AddOrUpdate(
+                r => r.Name,
+                new IdentityRole { Name = "Administrator" },
+                new IdentityRole { Name = "User" },
+                new IdentityRole { Name = "Super User" }
+            );
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Categories.AddOrUpdate(
+                c => c.CategoryId,
+                new Category { CategoryName = "Root", Deleted = false, Parent_Category = null, Category_ParentID = null }
+            );
+
         }
     }
 }
