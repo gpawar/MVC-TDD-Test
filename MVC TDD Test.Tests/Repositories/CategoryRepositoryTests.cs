@@ -12,7 +12,8 @@ namespace MVC_TDD_Test.Tests.Repositories
         [TestMethod]
         public void TestInstantiation()
         {
-            ICategoryRepository repository = new CategoryRepository();
+            ApplicationDbContext context = new ApplicationDbContext();
+            ICategoryRepository repository = new CategoryRepository(context);
             Assert.IsNotNull(repository);
         }
 

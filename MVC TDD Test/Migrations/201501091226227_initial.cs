@@ -13,7 +13,7 @@ namespace MVC_TDD_Test.Migrations
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
                         CategoryName = c.String(),
-                        Category_ParentID = c.Int(nullable: false),
+                        Category_ParentID = c.Int(nullable: true),
                         CategoryOrder = c.Short(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                     })
