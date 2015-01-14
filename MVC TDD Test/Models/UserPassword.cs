@@ -13,7 +13,7 @@ namespace MVC_TDD_Test.Models
 
         [Key]
         [Column(Order = 1)]
-        public Int32 Id { get; set; }
+        public string Id { get; set; }
 
         [Key]
         [Column(Order = 2)]
