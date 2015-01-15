@@ -99,6 +99,7 @@ namespace MVC_TDD_Test.Tests.Repositories
             mockContext.Setup(c => c.Users).Returns(mockUserSet.Object);
 
             mockContext.Setup(m => m.Include(It.IsAny<String>())).Returns(mockContext.Object); where ; 
+            //http://stackoverflow.com/questions/20509315/moqing-enity-framework-6-include-using-dbset
         }
 
         [TestCleanup()]
