@@ -19,9 +19,9 @@ namespace MVC_TDD_Test.Models
 
         public virtual Category Parent_Category { get; set; }
 
-        public virtual ICollection<Category> SubCategories { get; set; }
+        public virtual List<Category> SubCategories { get; set; }
 
-        public virtual ICollection<Password> Passwords { get; set; }
+        public virtual List<Password> Passwords { get; set; }
 
         public Int16 CategoryOrder { get; set; }
 

@@ -41,7 +41,7 @@ namespace MVC_TDD_Test.Models
 
         public string Creator_Id { get; set; }
 
-        public virtual ICollection<UserPassword> Parent_UserPasswords { get; set; }
+        public virtual List<UserPassword> Parent_UserPasswords { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
