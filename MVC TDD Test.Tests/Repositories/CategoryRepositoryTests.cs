@@ -8,6 +8,8 @@ using System.Linq;
 using Moq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
+using EntityFramework.Testing;
+using EntityFramework.Testing.Moq;
 
 namespace MVC_TDD_Test.Tests.Repositories
 {
@@ -59,8 +61,6 @@ namespace MVC_TDD_Test.Tests.Repositories
                 new ApplicationUser() { Id = "11111111-98b8-496d-8518-f42cd95507e0", UserName = "TestUser2", userFullName = "Test User 2", isActive = true, isAuthorised = true, Email = "davie@thatcoderguy.co.uk", PasswordHash  = "AIxwFq/H7sElYxlMwJiiS2aiYLrU0BBT/el/EDaSZRpAP2/bkuMDIbqWdA+LIlaF3A==", SecurityStamp = "186e0156-3125-4fe2-a806-37f49d949b34", LockoutEnabled = true }
             }.AsQueryable();
 
-            DbSet dbSet<Category> = new Mock<DbSet<T>>()
-
             var mockCategorySet = new Mock<DbSet<Category>>();
             mockCategorySet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(testcategories.Provider);
             mockCategorySet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(testcategories.Expression);
@@ -98,8 +98,7 @@ namespace MVC_TDD_Test.Tests.Repositories
             mockContext.Setup(c => c.Roles).Returns(mockRoleSet.Object);
             mockContext.Setup(c => c.Users).Returns(mockUserSet.Object);
 
-            mockContext.Setup(m => m.Include(It.IsAny<String>())).Returns(mockContext.Object); where ; 
-            //http://stackoverflow.com/questions/20509315/moqing-enity-framework-6-include-using-dbset
+            //https://github.com/rowanmiller/EntityFramework.Testing
         }
 
         [TestCleanup()]

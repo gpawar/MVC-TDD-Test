@@ -118,6 +118,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EntityFramework.Testing.Moq\EntityFramework.Testing.Moq.csproj">
+      <Project>{13b2c70c-a084-44af-8f75-975d84438dee}</Project>
+      <Name>EntityFramework.Testing.Moq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFramework.Testing\EntityFramework.Testing.csproj">
+      <Project>{4351e4d4-c68c-4cf6-998b-ab56d8a3760d}</Project>
+      <Name>EntityFramework.Testing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVC TDD Test\MVC TDD Test.csproj">
       <Project>{C03FA122-04E3-42EA-BCB8-4A9F68B79AFD}</Project>
       <Name>MVC TDD Test</Name>
