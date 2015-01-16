@@ -3,7 +3,7 @@ namespace MVC_TDD_Test.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -114,19 +114,18 @@ namespace MVC_TDD_Test.Migrations
                 "dbo.UserPassword",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.String(nullable: false, maxLength: 128),
                         PasswordId = c.Int(nullable: false),
                         CanEditPassword = c.Boolean(nullable: false),
                         CanDeletePassword = c.Boolean(nullable: false),
                         CanViewPassword = c.Boolean(nullable: false),
                         CanChangePermissions = c.Boolean(nullable: false),
-                        UserPasswordUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.Id, t.PasswordId })
-                .ForeignKey("dbo.AspNetUsers", t => t.UserPasswordUser_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.Id, cascadeDelete: true)
                 .ForeignKey("dbo.Password", t => t.PasswordId)
-                .Index(t => t.PasswordId)
-                .Index(t => t.UserPasswordUser_Id);
+                .Index(t => t.Id)
+                .Index(t => t.PasswordId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -146,14 +145,14 @@ namespace MVC_TDD_Test.Migrations
             DropForeignKey("dbo.Password", "Parent_CategoryId", "dbo.Category");
             DropForeignKey("dbo.Password", "Creator_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserPassword", "PasswordId", "dbo.Password");
-            DropForeignKey("dbo.UserPassword", "UserPasswordUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.UserPassword", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Category", "Category_ParentID", "dbo.Category");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.UserPassword", new[] { "UserPasswordUser_Id" });
             DropIndex("dbo.UserPassword", new[] { "PasswordId" });
+            DropIndex("dbo.UserPassword", new[] { "Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });

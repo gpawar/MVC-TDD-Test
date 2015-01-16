@@ -9,6 +9,6 @@ namespace MVC_TDD_Test.Repositories
 {
     public interface ICategoryRepository
     {
-        Category GetCategoryItem(int parentid);
+        Category GetCategoryItem(int parentcategoryid);
     }
 }

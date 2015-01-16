@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace MVC_TDD_Test.Models
+namespace MVC_TDD_Test.ViewModels
 {
     public class IndexViewModel
     {
