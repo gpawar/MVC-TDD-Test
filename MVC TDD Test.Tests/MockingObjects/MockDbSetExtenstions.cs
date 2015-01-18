@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
@@ -66,6 +67,16 @@ namespace EntityFramework.Testing.Moq
                 .Returns((object[] keyValues) => set.Data.SingleOrDefault(e => finder(keyValues, e)));
 
             return set;
+        }
+
+        public static IQueryable<T> Includes<T>(this IQueryable<T> sequence, string path)
+        {
+            var objectQuery = sequence as ObjectQuery<T>;
+            if (objectQuery != null)
+            {
+                return objectQuery.Include(path);
+            }
+            return sequence;
         }
     }
 }

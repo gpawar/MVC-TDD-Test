@@ -13,7 +13,7 @@ namespace MVC_TDD_Test.Database
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public static ApplicationDbContext Create()
@@ -21,11 +21,11 @@ namespace MVC_TDD_Test.Database
             return new ApplicationDbContext();
         }
 
-        public virtual DbSet<Password> Passwords { get; set; }
+        public virtual IDbSet<Password> Passwords { get; set; }
 
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
 
-        public virtual DbSet<UserPassword> UserPasswords { get; set; }
+        public virtual IDbSet<UserPassword> UserPasswords { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

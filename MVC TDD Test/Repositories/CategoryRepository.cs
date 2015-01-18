@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+//using EntityFramework.Testing.Moq;
 
 namespace MVC_TDD_Test.Repositories
 {
@@ -17,15 +18,34 @@ namespace MVC_TDD_Test.Repositories
             this.databasecontext = databasecontext;
         }
 
+        public IQueryable<Category> GetItem(int parentcategoryid)
+        {
+            return databasecontext.Categories.Where(c => c.CategoryId == parentcategoryid);
+        }
+
+        public Category GetPopulatedItem(IQueryable<Category> item)
+        {
+            var CategoryItem = item.Include("SubCategories").Single(i => i.CategoryId == 1);
+            return CategoryItem;
+        }
+
         public Category GetCategoryItem(int parentcategoryid)
         {
             //return the selected item - with its children
             var CategoryItem = databasecontext.Categories
                                                         .Where(c => c.CategoryId == parentcategoryid)
-                                                        .Include(c => c.SubCategories)
-                                                        .Include(c => c.Passwords)
-                                                        .Include(c => c.Passwords.Select(p => p.Creator))
-                                                        .ToList()
+                                                        /*.Select(c => new Category()
+                                                        {
+                                                            CategoryId = c.CategoryId,
+                                                            CategoryName = c.CategoryName,
+                                                            CategoryOrder = c.CategoryOrder,
+                                                            Deleted = c.Deleted,
+                                                            SubCategories = databasecontext.Categories.Where(s => s.Category_ParentID == c.CategoryId).ToList()
+                                                        })*/
+                                                        .Include("SubCategories")
+                                                        //.Include("Passwords")
+                                                        //.Include(c => c.Passwords.Select(p => p.Creator))
+                                                        //.ToList()
                                                         /*
                                                         .Select(c => new Category()
                                                         {

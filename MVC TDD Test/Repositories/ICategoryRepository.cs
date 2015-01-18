@@ -10,5 +10,7 @@ namespace MVC_TDD_Test.Repositories
     public interface ICategoryRepository
     {
         Category GetCategoryItem(int parentcategoryid);
+        Category GetPopulatedItem(IQueryable<Category> item);
+        IQueryable<Category> GetItem(int parentcategoryid);
     }
 }

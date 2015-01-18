@@ -1,20 +1,21 @@
 namespace MVC_TDD_Test.Migrations
 {
     using Microsoft.AspNet.Identity.EntityFramework;
+    using MVC_TDD_Test.Database;
     using MVC_TDD_Test.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MVC_TDD_Test.Database.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(MVC_TDD_Test.Database.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //Add in the roles required for the Secure Password Repository
             context.Roles.AddOrUpdate(
